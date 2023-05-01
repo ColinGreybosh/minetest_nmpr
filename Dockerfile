@@ -11,6 +11,7 @@ RUN apt-get install -y libxxf86vm-dev
 RUN apt-get install -y freeglut3-dev
 RUN apt-get install -y mesa-utils libgl1-mesa-glx
 RUN apt-get install -y libgl1-mesa-dri
+RUN apt-get install -y xserver-xorg-video-all
 
 # Copy local directories to the current local directory of our docker image (/app)
 COPY ./src ./src
@@ -23,5 +24,7 @@ RUN make
 
 EXPOSE 3000
 
+WORKDIR /app/bin
+
 # Start the app
-CMD [ "./bin/test" ]
+CMD [ "./test" ]
