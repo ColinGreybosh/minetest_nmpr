@@ -5,7 +5,11 @@ FROM ubuntu:latest
 WORKDIR /app
 
 RUN apt-get update
-RUN apt-get install -y build-essential make libirrlicht-dev libjthread-dev libx11-dev
+RUN apt-get install -y build-essential
+RUN apt-get install -y make
+RUN apt-get install -y libirrlicht-dev
+RUN apt-get install -y libjthread-dev
+RUN apt-get install -y libx11-dev
 RUN apt-get install -y libxext-dev
 RUN apt-get install -y libxxf86vm-dev
 RUN apt-get install -y freeglut3-dev
