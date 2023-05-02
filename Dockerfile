@@ -29,6 +29,11 @@ RUN make
 
 RUN cd data && mogrify *.png
 
+# Save space on the image by removing dev dependencies
+RUN apt-get remove -y build-essential
+RUN apt-get remove -y make
+RUN apt-get remove -y imagemagick
+
 EXPOSE 3000
 
 WORKDIR /app/bin
