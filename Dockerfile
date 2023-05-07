@@ -25,6 +25,8 @@ COPY ./Makefile ./Makefile
 
 RUN mkdir -p ./bin
 
+COPY ./udp_proxy.py ./bin/udp_proxy.py
+
 RUN make
 
 RUN cd data && mogrify *.png
@@ -34,9 +36,13 @@ RUN apt-get remove -y build-essential
 RUN apt-get remove -y make
 RUN apt-get remove -y imagemagick
 
-EXPOSE 3000
+RUN apt-get install -y python3
+
+EXPOSE 30000
 
 WORKDIR /app/bin
 
+COPY ./entrypoint.sh ./entrypoint.sh
+
 # Start the app
-CMD [ "./test" ]
+CMD [ "./entrypoint.sh"]
