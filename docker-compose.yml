@@ -1,0 +1,26 @@
+services:
+  minetest:
+    container_name: minetest
+    build: .
+    ports:
+      - "15326:30000/udp"
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    privileged: true
+    networks:
+      - overlay_net
+  udp_proxy:
+    image: udp_proxy
+    ports:
+      - "30000/udp"
+      - "30000:20000/udp"
+    depends_on:
+      - minetest
+    links:
+      - minetest
+    networks:
+      - overlay_net
+networks:
+  overlay_net:
