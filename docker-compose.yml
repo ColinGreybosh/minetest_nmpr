@@ -23,5 +23,7 @@ services:
       - minetest
     networks:
       - overlay_net
+    volumes:
+      - /tmp/udp_proxy.log:/tmp/udp_proxy.log
 networks:
   overlay_net:
