@@ -4,6 +4,7 @@ services:
     build: .
     ports:
       - "15326:30000/udp"
+      - "15326:30000/tcp"
     environment:
       - DISPLAY=host.docker.internal:0
     volumes:
@@ -14,11 +15,11 @@ services:
   udp_proxy:
     image: udp_proxy
     ports:
+      - "30000/tcp"
       - "30000/udp"
+      - "30000:20000/tcp"
       - "30000:20000/udp"
     depends_on:
-      - minetest
-    links:
       - minetest
     networks:
       - overlay_net

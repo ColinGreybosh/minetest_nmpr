@@ -25,8 +25,6 @@ COPY ./Makefile ./Makefile
 
 RUN mkdir -p ./bin
 
-COPY ./udp_proxy.py ./bin/udp_proxy.py
-
 RUN make
 
 RUN cd data && mogrify *.png
