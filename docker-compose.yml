@@ -1,3 +1,4 @@
+version: '3'
 services:
   minetest:
     container_name: minetest
@@ -25,5 +26,22 @@ services:
       - overlay_net
     volumes:
       - /tmp/udp_proxy.log:/tmp/udp_proxy.log
+  client:
+    container_name: client
+    build: .
+    depends_on:
+      - udp_proxy
+    ports:
+      - "30000/udp"
+      - "30000/tcp"
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      - overlay_net
 networks:
   overlay_net:
