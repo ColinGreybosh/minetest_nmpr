@@ -14,6 +14,7 @@ services:
     networks:
       - overlay_net
   udp_proxy:
+    container_name: udp_proxy
     image: udp_proxy
     ports:
       - "30000/tcp"
